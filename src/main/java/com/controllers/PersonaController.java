@@ -34,7 +34,7 @@ public class PersonaController {
         }else{
             persona.setId( personaEncontrada.get(0).getId() );
             personaDao.actualizar(persona);
-            return persona;   
+            return persona;
         }
         
     }

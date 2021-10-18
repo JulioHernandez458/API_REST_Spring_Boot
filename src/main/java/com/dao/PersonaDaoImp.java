@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import org.springframework.data.jpa.repository.Modifying;
 
 @Repository
 @Transactional
@@ -30,10 +31,17 @@ public class PersonaDaoImp implements PersonaDao {
     }
 
     @Override
+    @Modifying
     @Transactional
     public void actualizar(Persona persona) {
-        entityManager.merge(persona);
-                //update(persona);
+        String query = "update Persona p set p.nombre = :nombre, p.apellido = :apellido, "
+                + "p.email = :email, p.telefono = :telefono where p.id = :id";
+        entityManager.createQuery(query)
+                .setParameter("id", persona.getId())
+                .setParameter("nombre", persona.getNombre())
+                .setParameter("apellido", persona.getApellido())
+                .setParameter("email", persona.getEmail())
+                .setParameter("telefono", persona.getTelefono()).executeUpdate();
     }
 
     @Override
