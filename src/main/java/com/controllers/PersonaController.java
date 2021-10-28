@@ -15,17 +15,20 @@ public class PersonaController {
     private PersonaDao personaDao;
 
 
+    //@CrossOrigin(origins = "http://localhost:4200/")
     @RequestMapping(value = "api/personas", method = RequestMethod.GET)
     public List<Persona> getPersonas() {
         return personaDao.obtenerPersonas();
     }
 
     
+    //@CrossOrigin(origins = "http://localhost:4200/")
     @RequestMapping(value = "api/personas", method = RequestMethod.POST)
     public void registrarPersona(@RequestBody Persona persona) {
         personaDao.registrar(persona);
     }
     
+    //@CrossOrigin(origins = "http://localhost:4200/")
     @RequestMapping(value = "api/personas/{id}", method = RequestMethod.PUT)
     public Persona actualizar(@PathVariable Integer id, @RequestBody Persona persona) {
         List<Persona> personaEncontrada = personaDao.buscarPersona(id);
@@ -39,11 +42,13 @@ public class PersonaController {
         
     }
 
+    //@CrossOrigin(origins = "http://localhost:4200/")
     @RequestMapping(value = "api/personas/{id}", method = RequestMethod.DELETE)
     public void eliminar(@PathVariable Integer id) {
        personaDao.eliminar(id);
     }
     
+    //@CrossOrigin(origins = "http://localhost:4200/")
     @RequestMapping(value = "api/personas/{id}", method = RequestMethod.GET)
     public List<Persona> buscarPersona(@PathVariable Integer id) {
         return personaDao.buscarPersona(id);
